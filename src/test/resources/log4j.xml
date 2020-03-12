@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" >
+    
+    <!-- console appender -->
+    <appender name="console" class="org.apache.log4j.ConsoleAppender">
+    	<param name="Threshold" value="DEBUG" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss}][%c] [%L] %m%n" />
+        </layout>   
+    </appender>   	
+   
+   	<appender name="servicelog" class="org.apache.log4j.DailyRollingFileAppender">
+   		<param name="File" value="/logs/test/pos.log" />
+   		<param name="DatePattern" value="_yyyyMMdd" />
+		<param name="Append" value="true" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"	value="[%d{yyyy-MM-dd HH:mm:ss}] [%c] [%5p] %m%n"/>
+		</layout>
+	</appender>
+   
+	<logger name="org.apache.commons.logging.Log" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="console" />
+	</logger>
+    
+    <logger name="com.milkit" additivity="false">
+        <level value="DEBUG"/>
+        <appender-ref ref="console" />
+<!--  -->
+        <appender-ref ref="servicelog"/>
+
+    </logger>
+    
+
+	<!-- tran logger(JDBC)
+	<logger name="org.springframework.jdbc.core">
+	  <level value="DEBUG" />
+	</logger>
+	 -->
+	 
+	<logger name="org.springframework" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="console" />
+	</logger>
+
+	<!-- tran logger
+	<logger name="jdbc.sqltiming" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="console" />
+	</logger>
+	
+	<logger name="java.sql.Connection">
+		<level value ="DEBUG" />
+		<appender-ref ref="console" />
+	</logger>
+	
+	<logger name="java.sql.PreparedStatement" >
+		<level value ="DEBUG" />
+		<appender-ref ref="console" />
+	</logger>
+	
+	<logger name="java.sql.Statement" >
+		<level value ="DEBUG" />
+		<appender-ref ref="console" />
+	</logger>
+	 
+	<logger name="java.sql.Resultset" >
+		<level value ="DEBUG" />
+		<appender-ref ref="console" />
+	</logger> 
+	-->
+
+</log4j:configuration>
