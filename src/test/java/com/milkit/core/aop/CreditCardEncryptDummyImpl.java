@@ -22,15 +22,6 @@ public class CreditCardEncryptDummyImpl implements CreditCardEncryptDummy {
 	public void encryptFieldCreditCard(CreditCard creditCard) throws Exception {
 		logger.debug("#########		Encrypt creditCard:"+creditCard);
 	}
-	
-
-	@Override
-	@DoEncryption
-	public void encryptFieldCreditCard(CreditCard creditCard, PlainCard plainCard) throws Exception {
-		logger.debug("#########		Encrypt creditCard:"+creditCard);
-		logger.debug("#########		Plain creditCard:"+plainCard);
-	}
-
 
 	@Override
 	@DoEncryption(type=EncryptType.Both)
@@ -43,6 +34,13 @@ public class CreditCardEncryptDummyImpl implements CreditCardEncryptDummy {
 		return new CreditCard(creditCard);
 	}
 	
+	@Override
+	@DoEncryption
+	public void encryptFieldCreditCard(CreditCard creditCard, PlainCard plainCard) throws Exception {
+		logger.debug("#########		Encrypt creditCard:"+creditCard);
+		logger.debug("#########		Plain creditCard:"+plainCard);
+	}
+
 	@Override
 	public void encryptFieldArgu(String encryptString) throws Exception {
 		logger.debug(encryptString);

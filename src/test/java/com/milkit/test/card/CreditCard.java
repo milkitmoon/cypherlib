@@ -11,12 +11,8 @@ import com.milkit.core.common.AbstractBean;
 public class CreditCard extends AbstractBean implements Serializable {
 
 	private long id;
-	
-	
-	
 
 	@Encrypt(algorithm=com.milkit.core.annotations.encrypt.Encrypt.Algorithm.AES128CBC, secureKey="1234567890123456", secureIV="9878543210123456")
-//	@Encrypt(algorithm=com.milkit.core.annotations.encrypt.Encrypt.Algorithm.AES128CBC)
 	private String creditCardNumber;
 
 	@Encrypt
