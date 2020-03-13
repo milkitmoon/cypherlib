@@ -7,14 +7,14 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
-import com.milkit.core.common.DateGlobal;
+import com.milkit.core.common.StandardGlobal;
 
 
 
 public class DateUtil {
 	
 	public static SimpleDateFormat getMotpDateFormat() {
-		return new SimpleDateFormat(DateGlobal.STAT_DATE_FORMAT);
+		return new SimpleDateFormat(StandardGlobal.STAT_DATE_FORMAT);
 	}
 	
 	public static SimpleDateFormat getMotpDateFormat(String format) {
@@ -146,7 +146,7 @@ public class DateUtil {
 	}
     
 	public static String plusHour(String srcdate, int addHour) throws ParseException {
-		return plusDay(DateGlobal.STAT_DATE_FORMAT, srcdate, addHour);
+		return plusDay(StandardGlobal.STAT_DATE_FORMAT, srcdate, addHour);
 	}
 	
 	public static String plusHour(Date srcdate, String targetdateFormat, int addHour) throws ParseException {
@@ -168,7 +168,7 @@ public class DateUtil {
 	}
 	
 	public static String plusDay(String srcdate, int addday) throws ParseException {
-		return plusDay(DateGlobal.STAT_DATE_FORMAT, srcdate, addday);
+		return plusDay(StandardGlobal.STAT_DATE_FORMAT, srcdate, addday);
 	}
 	
 	public static String plusDay(String srcdateFormat, String srcdate, int addday) throws ParseException {
@@ -196,7 +196,7 @@ public class DateUtil {
 	}
 	
 	public static String plusMonth(String srcdate, int month) throws ParseException {
-		return plusMonth(DateGlobal.STAT_DATE_FORMAT, srcdate, month);
+		return plusMonth(StandardGlobal.STAT_DATE_FORMAT, srcdate, month);
 	}
 	
 	public static String plusMonth(Date srcdate, String targetdateFormat, int month) throws ParseException {
@@ -224,13 +224,13 @@ public class DateUtil {
 	public static String toFriendlyDateString(String userdate) throws ParseException {
 		String DATEFORMAT = "yyyyMMddHHmmss";
 		SimpleDateFormat dateFormat = new SimpleDateFormat(DATEFORMAT);
-		SimpleDateFormat viewFormat = new SimpleDateFormat(DateGlobal.FRIENDLY_DATE_FORMAT);
+		SimpleDateFormat viewFormat = new SimpleDateFormat(StandardGlobal.FRIENDLY_DATE_FORMAT);
 		
 		return viewFormat.format(dateFormat.parse(userdate));
 	}
 	
 	public static String toFriendlyDateString(Date curDate) {
-		SimpleDateFormat motpDateFormatMs = new SimpleDateFormat(DateGlobal.FRIENDLY_DATE_FORMAT);
+		SimpleDateFormat motpDateFormatMs = new SimpleDateFormat(StandardGlobal.FRIENDLY_DATE_FORMAT);
 		
 		return motpDateFormatMs.format(curDate);
 	}
