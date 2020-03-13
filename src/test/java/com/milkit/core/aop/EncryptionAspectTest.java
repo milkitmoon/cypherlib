@@ -13,7 +13,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.milkit.test.card.CreditCard;
 import com.milkit.test.card.CreditCardTestService;
 
 

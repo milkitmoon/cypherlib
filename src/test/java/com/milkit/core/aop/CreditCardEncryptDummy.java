@@ -3,7 +3,6 @@ package com.milkit.core.aop;
 import com.milkit.core.annotations.encrypt.Encrypt;
 import com.milkit.core.annotations.encrypt.Encrypt.Algorithm;
 import com.milkit.core.annotations.encrypt.Encrypt.EncryptType;
-import com.milkit.test.card.CreditCard;
 
 public interface CreditCardEncryptDummy {
 
