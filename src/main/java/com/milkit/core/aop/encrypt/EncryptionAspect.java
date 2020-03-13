@@ -179,8 +179,8 @@ public class EncryptionAspect {
 						String clearText = (String)toString.invoke((String)args[j], null);
 	
 						String cipherText = BlowfishUtil.encrypt(clearText);
-logger.debug("Arguments clearText:" + clearText);
-logger.debug("Arguments cipherText:" + cipherText);
+//logger.debug("Arguments clearText:" + clearText);
+//logger.debug("Arguments cipherText:" + cipherText);
 
 //						Object copyArg = ObjectCloner.deepCopy(args[j]);
 //						ReflectUtil.setStringValue(copyArg, cipherText);
