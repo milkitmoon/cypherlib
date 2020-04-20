@@ -15,7 +15,6 @@ public class MD5DigestMethod implements DigestMethod {
 	}
 	
 	public MD5DigestMethod() throws Exception {
-//		md = MessageDigest.getInstance("SHA1", "BC");
 		md = MessageDigest.getInstance("MD5");
 	}
 	
