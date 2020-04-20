@@ -8,11 +8,7 @@ public class RandomGenerator {
 	private static SecureRandom rand = null;
 
 	private static void init(String algorithm) {
-		try {
-			rand = SecureRandom.getInstance(algorithm);
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-		}
+		rand = SecureRandom.getInstance(algorithm);
 		rand.setSeed(System.currentTimeMillis());
 		rand.setSeed(System.nanoTime());
 		rand.setSeed(rand.hashCode());
