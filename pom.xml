@@ -8,11 +8,11 @@
   <name>cypherlib</name>
   <url>http://maven.apache.org</url>
   
+  
   <!-- 주의!! 배포시에는 packaging type을 jar로 수정하여 빌드하여 배포(하위 프로젝트 마찬가지임), 기본 개발 시에는 pom type  -->
 
 <!---->
   <packaging>jar</packaging>
-
 	
 <!--
   <packaging>pom</packaging>
@@ -60,7 +60,7 @@
       <maven.version>2.0.4</maven.version>
   </properties>
 
-	
+
 	<repositories>
 
 		<!-- For testing against latest Spring snapshots -->
@@ -266,8 +266,19 @@
            </excludes>
        </resource>
     </resources>
-
+    
     <plugins>
+
+<!-- 
+       <plugin>
+         <groupId>org.eclipse.m2e</groupId>
+         <artifactId>m2e-config</artifactId>
+         <version>1.0.0</version>
+         <configuration>
+           <settings>${basedir}/settings.xml</settings>
+         </configuration>
+       </plugin>
+ -->
   
       <plugin>
         <artifactId>maven-source-plugin</artifactId>
