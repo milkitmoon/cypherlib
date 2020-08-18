@@ -16,7 +16,6 @@ public class ArrayUtil {
 		return arrayList;
 	}
 	
-	//T가 int, float 와 같은 primitive형일 경우 정상동작하지 않음 
 	public static <T> List<T> getListFromArray(Class<T> componentType, T[] array) {
 		List<T> arrayList = new ArrayList<T>();
 		if(array != null) {
@@ -26,7 +25,6 @@ public class ArrayUtil {
 		return arrayList;
 	}
 
-	//T가 int, float 와 같은 primitive형일 경우 정상동작하지 않음
 	@SuppressWarnings("unchecked")
 	public static <T> T[] getArrayFormList(Class<T> componentType, Collection<T> list) {
 		 T[] objects = (T[])Array.newInstance(componentType, 0);
@@ -34,7 +32,6 @@ public class ArrayUtil {
 		return (T[]) list.toArray( objects );
 	}
 	
-	//T가 int, float 와 같은 primitive형일 경우 정상동작하지 않음
 	@SuppressWarnings("unchecked")
 	public static <T> T[] addArray( T[] srcArray, Class<T> componentType, T addingObject ) {
 		T[] destArray = null;
@@ -74,7 +71,7 @@ public class ArrayUtil {
 		
 		return destArray;
 	}
-	//T가 int, float 와 같은 primitive형일 경우 정상동작하지 않음
+
 	public static <T> T[] addArray(T[] srcArray, Class<T> componentType, T[] addingArray) {
 		T[] destArray = null;
 		
@@ -111,7 +108,6 @@ public class ArrayUtil {
 		return destArray;
 	}
 	
-	//T가 int, float 와 같은 primitive형일 경우 정상동작하지 않음
 	@SuppressWarnings("unchecked")
 	public static <T> T[] getCuttingArray(Class<T> componentType, T[] sourceArray, int startIndex, int endIndex) {
 		T[] objects = null;

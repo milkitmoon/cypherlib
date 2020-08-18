@@ -38,7 +38,7 @@ public class RandomTest {
 			String saltStr = RandomAgent.getRandomNumber(6);
 			set.add(saltStr);
 			
-System.out.println(saltStr);
+logger.debug(saltStr);
 		}
 		
 		PrintUtil.print(logger, set);
@@ -61,7 +61,7 @@ logger.debug("randomInt["+1+"]:"+randomInt);
 		
 		String random = RandomAgent.getTimeFormatRandomNumber("yyyyMMddhhmmssSSS", 22);
 		
-System.out.println(currectTime+"\n"+random);
+logger.debug(currectTime+"\n"+random);
 	}
 	
 }

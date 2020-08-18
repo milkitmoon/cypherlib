@@ -31,6 +31,15 @@ import com.milkit.core.util.ArrayUtil;
 import com.milkit.core.util.ObjectCloner;
 
 
+/**
+* <pre>
+* 1. 패키지명 : com.milkit.core.aop.encrypt
+* 2. 타입명 : EncryptionAspect.java
+* 3. 작성일 : 2015. 5. 28. 오후 3:11:21
+* 4. 작성자 : milkit
+* 5. 설명    : AOP를 활용하여 해쉬 및 암복호화 수행
+* </pre>
+*/
 @Aspect 
 @Component 
 public class EncryptionAspect {
@@ -41,48 +50,11 @@ public class EncryptionAspect {
 //    private CacheManager cacheManager;
     
 
-//  @Pointcut("execution( * *.encryptField*(..) ) || @annotation(com.milkit.core.annotations.Encrypt)")
-//  @Pointcut("execution( * *.encryptField*(..) ) || execution( * *.encryptField*(@com.milkit.core.annotations.Encrypt (*)) )")
-//  @Pointcut("execution( * *.encryptField*(..) )")
     @Pointcut("@annotation(com.milkit.core.annotations.encrypt.DoEncryption)")
     public void doEncryption() {}
 
-/*
     @Around("@annotation( doEncryption )")
     public Object encryptionAround(ProceedingJoinPoint joinPoint, DoEncryption doEncryption) throws Throwable {
-    	log.debug("encryptBeforeSaving...The method " + joinPoint.getSignature().getName()+ "() begins with " + Arrays.toString(joinPoint.getArgs()));
-    	log.debug("encryptBeforeSaving...Target class : "+ joinPoint.getTarget().getClass().getName());
-    	
-    	Object output = null;
-    	
-		EncryptType encryptType = doEncryption.type();
-			
-		if(encryptType == EncryptType.Encrypt) {
-	    	Object[] copyArgs = encryptionObject(joinPoint);
-	    	output = joinPoint.proceed();
-		    	
-	    	restoreObject(joinPoint.getArgs(), copyArgs);
-		} else if(encryptType == EncryptType.Decrypt) {
-			output = decryption( joinPoint.proceed() );
-		} else if(encryptType == EncryptType.Both) {
-	    	Object[] copyArgs = encryptionObject(joinPoint);
-		    	
-	    	output = decryption( joinPoint.proceed() );
-		    	
-	    	restoreObject(joinPoint.getArgs(), copyArgs);
-		} else {
-			throw new IllegalArgumentException("DoEncryption arguments is not Valid !!["+encryptType+"]");
-		}
-			
-		return output;
-     }
-  */
-
-    @Around("@annotation( doEncryption )")
-    public Object encryptionAround(ProceedingJoinPoint joinPoint, DoEncryption doEncryption) throws Throwable {
-//    	log.debug("encryptBeforeSaving...The method " + joinPoint.getSignature().getName()+ "() begins with " + Arrays.toString(joinPoint.getArgs()));
-//    	log.debug("encryptBeforeSaving...Target class : "+ joinPoint.getTarget().getClass().getName());
-    	
     	Object methodOutput = null;
     	Object[] copyOriginArgs = null;
     	
@@ -90,8 +62,6 @@ public class EncryptionAspect {
 			
 		copyOriginArgs = doEncryption(joinPoint, encryptType);
 		methodOutput = doDecryption(joinPoint, encryptType);
-		
-//log.debug("methodOutput : "+ methodOutput);
 		
 		restoreEncryptArgumentField(joinPoint, copyOriginArgs);
 		
@@ -127,8 +97,8 @@ public class EncryptionAspect {
         	if(output != null){
         		if(output instanceof Collection) {
         			for (@SuppressWarnings("unchecked")
-					Iterator<Object> it = ((Collection<Object>) output).iterator(); it.hasNext();) {
-        				decryptObject(it.next());
+						Iterator<Object> it = ((Collection<Object>) output).iterator(); it.hasNext();) {
+        					decryptObject(it.next());
         			}
         		} else if(output instanceof Object[]) {
         			Object[] resultArray = (Object[])output;
@@ -140,7 +110,6 @@ public class EncryptionAspect {
         		}
         	}
         	
-//log.debug("decryptedObject:" + output);
             return output;
         } catch (IllegalArgumentException e){
             throw e;
@@ -156,15 +125,12 @@ public class EncryptionAspect {
 		if(args != null && args.length > 0) {
     		encryptObject(args, encryptType);
     		hashObject(args);		//also do hashing !!
-    		
-//			encryptionMethodArguments(joinPoint, encryptType, args);
     	}
 
 		return copyArgs;
 	}
     
 	private void encryptionMethodArguments(JoinPoint joinPoint, EncryptType encryptType, Object[] args) throws Exception {
-		
 		if (joinPoint.getSignature() instanceof MethodSignature) {
 			MethodSignature methodSignature = (MethodSignature)joinPoint.getSignature();
 			Method method = methodSignature.getMethod();
@@ -179,15 +145,8 @@ public class EncryptionAspect {
 						String clearText = (String)toString.invoke((String)args[j], null);
 	
 						String cipherText = BlowfishUtil.encrypt(clearText);
-logger.debug("Arguments clearText:" + clearText);
-logger.debug("Arguments cipherText:" + cipherText);
-
-//						Object copyArg = ObjectCloner.deepCopy(args[j]);
-//						ReflectUtil.setStringValue(copyArg, cipherText);
 						
 						ReflectUtil.setStringValue(args[j], cipherText);
-						
-//						encryptObjectElement(clearText, EncryptType.Encrypt);
 					}
 				}
 	
@@ -223,11 +182,8 @@ logger.debug("Arguments cipherText:" + cipherText);
 						
 						Encrypt encryptField = f.getAnnotation(Encrypt.class);
 						
-//						Algorithm algorithm = encryptField.algorithm();
-						
 			        	String clearText = (String) ReflectUtil.getFieldValue(argObj, f.getName());
 			        	if(clearText != null && !clearText.equals("")) {
-//							String cipherText = SecurityUtil.encrypt(clearText);
 							String cipherText = encryptValue(encryptField.algorithm(), encryptField.secureKey(), encryptField.secureIV(), clearText);
 							
 //log.debug("clearText:" + clearText);
@@ -319,7 +275,6 @@ logger.debug("Arguments cipherText:" + cipherText);
 				try {
 					for (Field f : argClass.getDeclaredFields()) {
 						Hash hashField = f.getAnnotation(Hash.class);
-//						if(f.isAnnotationPresent(Hash.class) && f.getType().getName().equalsIgnoreCase("java.lang.String")) {
 						if(hashField != null && f.getType().getName().equalsIgnoreCase("java.lang.String")) {
 							String clearText = (String) ReflectUtil.getFieldValue(args[i], f.getName());
 							String digestText = HashAgent.hash(hashField.algorithm().getValue(), clearText, null);
@@ -354,8 +309,6 @@ logger.debug("Arguments cipherText:" + cipherText);
 					for (Field changeArgfield : changeArgClass.getDeclaredFields()) {
 						if (( changeArgfield.isAnnotationPresent(Encrypt.class) || changeArgfield.isAnnotationPresent(Hash.class) ) && changeArgfield.getType().getName().equalsIgnoreCase("java.lang.String")) {
 				        	String clearText = (String) ReflectUtil.getFieldValue(copyArgs[i], changeArgfield.getName());
-							
-//log.debug("restoreClearText:" + clearText);
 				        	
 				        	ReflectUtil.setFieldValue(changeArgs[i], changeArgfield.getName(), clearText);
 						}
@@ -373,25 +326,11 @@ logger.debug("Arguments cipherText:" + cipherText);
 		for (Field f : result.getClass().getDeclaredFields()) {
 			if (f.isAnnotationPresent(Encrypt.class) && f.getType().getName().equalsIgnoreCase("java.lang.String")) {
 		        try {
-//log.debug("encryptBeforeSaving...@Encrypt annotation field name: " + f.getName());
 
 					Encrypt encryptField = f.getAnnotation(Encrypt.class);
-/*
-		        	String getMethodName = "get" + Character.toUpperCase(f.getName().charAt(0)) + f.getName().substring(1);
-		        	String setMethodName = "set" + Character.toUpperCase(f.getName().charAt(0)) + f.getName().substring(1);
-		        	
-		        	Object[] parms = null;
-		        	Method gm = f.getDeclaringClass().getMethod(getMethodName);
-		        	String cipherText = (String)gm.invoke(result, parms);
-*/
 		        	String cipherText = (String) ReflectUtil.getFieldValue(result, f.getName());
-//log.debug("cipherText:" + cipherText);
 
-//					String decryptedText = SecurityUtil.decrypt(cipherText);
 					String decryptedText = decryptValue(encryptField.algorithm(), encryptField.secureKey(), encryptField.secureIV(), cipherText);
-//log.debug("decryptedText:" + decryptedText);
-					
-//    		        String decryptedText = SecureCreditUtils.decrypt(encryptionKeys, cipherText);
 
 		        	ReflectUtil.setFieldValue(result, f.getName(), decryptedText);
 		        	

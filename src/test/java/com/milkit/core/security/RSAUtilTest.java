@@ -99,11 +99,7 @@ public class RSAUtilTest {
 //		PrivateKey privateKey = RSAUtils.getPrivateKey(modulus, exponent);
 		
 		try {
-//			KeyPair keyPair = getRsaKeyPair(1024, exponent);
-//			RSAUtils.generateKeyPair();
-			
-//			PublicKey sndPublicKey = RSAUtils.getPublicKey(RSAUtils.getPublicKeyModuleString(publicKey), RSAUtils.getPublicKeyExponentString(publicKey));
-			
+		
 			System.out.println( "public_key modulus:\n" + RSAUtils.getPublicKeyModuleString(publicKey) + "\nexponent:\n" + RSAUtils.getPublicKeyExponentString(publicKey));
 			System.out.println( "private_key modulus:\n" + RSAUtils.getPrivateKeyModuleString(privateKey) + "\nexponent:\n" + RSAUtils.getPrivateKeyExponentString(privateKey));
 			
@@ -115,7 +111,6 @@ public class RSAUtilTest {
 			
 			System.out.println("Decrypt Text = " + decryptText );
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

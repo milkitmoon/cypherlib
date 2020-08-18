@@ -16,11 +16,11 @@ public class HashAgentTest {
 	
 	@Test
 	public void 해시테스트() throws Exception {
-		String rawPass = "1111";
+		String rawPass = "password";
 //		Object salt = "00000001";
 		Object salt = null;
 		
-		String digest = HashAgent.hash(DigestMethod.SHA1, rawPass, null);
+		String digest = HashAgent.hash(DigestMethod.SHA256, rawPass, null, false);
 //		String digest = HashAgent.hash(DigestMethod.SHA256, Long.toString(new Date().getTime()), salt, false);
 		
 		logger.debug("digest:"+digest);
@@ -45,3 +45,4 @@ public class HashAgentTest {
 	}
 
 }
+

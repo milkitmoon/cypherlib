@@ -21,8 +21,7 @@ public class PrintUtil {
 		if(printer != null && message != null) {
 			printer.print("List size:["+message.size()+"]");
 			for (Iterator e = message.iterator(); e.hasNext();) {
-//				Object obj = e.next();
-//				printer.print(obj.getClass().getInterfaces()[0]);
+//				printer.print(e.next().getClass().getInterfaces()[0]);
 				printer.print(e.next());
 			}
 		}

@@ -29,6 +29,15 @@ import com.milkit.core.security.random.RandomAgent;
  * RSA 비대칭키 암호화 알고리즘 사용을 위한 유틸리티 클래스
  *
  */
+/**
+* <pre>
+* 1. 패키지명 : com.milkit.core.security
+* 2. 타입명 : RSAUtils.java
+* 3. 작성일 : 2015. 5. 26. 오전 10:13:10
+* 4. 작성자 : milkit
+* 5. 설명    : RSA 비대칭키 암호화 알고리즘 사용을 위한 유틸리티 클래스
+* </pre>
+*/
 public class RSAUtils {
 //	public static final String RSA = "RSA";
 	public static final String RSA = "RSA/ECB/PKCS1Padding";

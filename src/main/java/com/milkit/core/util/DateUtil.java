@@ -52,12 +52,6 @@ public class DateUtil {
     }
     
     public static int getMinDiff(String sDate1, String sDate2, String argFormat) {
-//  	String dateStr1 = validChkDate(sDate1);
-//    	String dateStr2 = validChkDate(sDate2);
-    	
-//        if (!checkDate(sDate1) || !checkDate(sDate2)) {
-//            throw new IllegalArgumentException("Invalid date format: args[0]=" + sDate1 + " args[1]=" + sDate2);
-//        }
         SimpleDateFormat sdf = new SimpleDateFormat(argFormat, Locale.getDefault());
         
         Date date1 = null;
@@ -77,13 +71,6 @@ public class DateUtil {
     }
     
     public static int getMinDiff(Date date1, Date date2) {
-//  	String dateStr1 = validChkDate(sDate1);
-//    	String dateStr2 = validChkDate(sDate2);
-    	
-//        if (!checkDate(sDate1) || !checkDate(sDate2)) {
-//            throw new IllegalArgumentException("Invalid date format: args[0]=" + sDate1 + " args[1]=" + sDate2);
-//        }
-        
         int minuite  = (1000 * 3600) / 60; //1분
         
         int days1 = (int)((date1.getTime()/minuite));
@@ -93,13 +80,6 @@ public class DateUtil {
     }
 
     public static int getSecondDiff(Date date1, Date date2) {
-//  	String dateStr1 = validChkDate(sDate1);
-//    	String dateStr2 = validChkDate(sDate2);
-    	
-//        if (!checkDate(sDate1) || !checkDate(sDate2)) {
-//            throw new IllegalArgumentException("Invalid date format: args[0]=" + sDate1 + " args[1]=" + sDate2);
-//        }
-        
         int second  = ((1000 * 3600) / 60) / 60; //1분
         
         int days1 = (int)(date1.getTime()/second);
@@ -109,14 +89,6 @@ public class DateUtil {
     }
     
     public static int getMiliSecondDiff(Date date1, Date date2) {
-//  	String dateStr1 = validChkDate(sDate1);
-//    	String dateStr2 = validChkDate(sDate2);
-    	
-//        if (!checkDate(sDate1) || !checkDate(sDate2)) {
-//            throw new IllegalArgumentException("Invalid date format: args[0]=" + sDate1 + " args[1]=" + sDate2);
-//        }
-        
-        
         int days1 = (int)date1.getTime();
         int days2 = (int)date2.getTime();
         

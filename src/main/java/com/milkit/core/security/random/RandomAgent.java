@@ -20,13 +20,11 @@ public class RandomAgent {
 		byte[] salt = new byte[20];
 		RandomGenerator.randomBytes(salt);
 		
-//		DigestMethod md = MethodFactory.getDigestMethod(DigestMethod.MD5);
 		DigestMethod md = MethodFactory.getDigestMethod(DigestMethod.SHA1);
 		md.update(DateUtil.getCurrentTime().getBytes());
         md.update(salt);
         byte[] digest = md.digest();
 		
-//        StringBuffer buffer = new StringBuffer(new String( digest ));
 		StringBuffer buffer = new StringBuffer(new String( Base64.encodeBase64(digest) ));
 		
 		if(buffer.length() > length) {
