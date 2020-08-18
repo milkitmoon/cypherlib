@@ -23,8 +23,8 @@ public class TempTest {
 	
 	@Test
 	public void 전화번호_테스트() {
-		String phoneNumber = "01086626053";
-//		String phoneNumber = "025166776";
+//		String phoneNumber = "01086626053";
+		String phoneNumber = "025166776";
 		boolean isPhoneNumber =  isPhoneNumber(phoneNumber);
 	
 		assertTrue(isPhoneNumber);
