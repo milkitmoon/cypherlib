@@ -55,18 +55,17 @@ public class EncryptionAspect {
 
     @Around("@annotation( doEncryption )")
     public Object encryptionAround(ProceedingJoinPoint joinPoint, DoEncryption doEncryption) throws Throwable {
+
     	Object methodOutput = null;
     	Object[] copyOriginArgs = null;
     	
 		EncryptType encryptType = doEncryption.type();
-			
+				
 		copyOriginArgs = doEncryption(joinPoint, encryptType);
 		methodOutput = doDecryption(joinPoint, encryptType);
-		
-		restoreEncryptArgumentField(joinPoint, copyOriginArgs);
-		
-//log.debug("methodOutput after: "+ methodOutput);
 			
+		restoreEncryptArgumentField(joinPoint, copyOriginArgs);
+				
 		return methodOutput;
     }
     

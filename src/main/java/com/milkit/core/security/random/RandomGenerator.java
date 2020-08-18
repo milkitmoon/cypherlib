@@ -7,12 +7,8 @@ public class RandomGenerator {
 
 	private static SecureRandom rand = null;
 
-	private static void init(String algorithm) {
-		try {
-			rand = SecureRandom.getInstance(algorithm);
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-		}
+	private static void init(String algorithm) throws NoSuchAlgorithmException {
+		rand = SecureRandom.getInstance(algorithm);
 		rand.setSeed(System.currentTimeMillis());
 		rand.setSeed(System.nanoTime());
 		rand.setSeed(rand.hashCode());
@@ -21,12 +17,12 @@ public class RandomGenerator {
 		rand.setSeed(rand.generateSeed(20));
 	}
 
-	public static void randomBytes(byte[] bytes) {
+	public static void randomBytes(byte[] bytes) throws NoSuchAlgorithmException {
 		init("SHA1PRNG");
 		rand.nextBytes(bytes);
 	}
 
-	public static void randomBytes(String algorithm, byte[] bytes) {
+	public static void randomBytes(String algorithm, byte[] bytes) throws NoSuchAlgorithmException {
 		init(algorithm);
 		rand.nextBytes(bytes);
 	}

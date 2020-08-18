@@ -50,16 +50,8 @@ public class AESSecretMethod extends SecretMethodImpl {
 
 	@Override
 	public void setKey(Object key) throws Exception {
-		
 		byte[] keyBytes = (byte[])key;
-//ByteUtil.printBytesHexa(keyBytes, 0, keyBytes.length);
-        seedkey = new SecretKeySpec((byte[])key, "AES");
-        
-//ByteUtil.printBytesHexa(seedkey.getEncoded(), 0, seedkey.getEncoded().length);
-
-//        seedkey = (SecretKey) new SecretKeySpec((byte[])key, "AES");
-        
-//		seedkey = new SecretKeySpec((byte[])key, "AES");
+	        seedkey = new SecretKeySpec((byte[])key, "AES");
 	}
 
 	@Override
