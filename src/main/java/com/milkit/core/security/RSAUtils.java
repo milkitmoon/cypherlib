@@ -49,11 +49,11 @@ public class RSAUtils {
 	private static Map<Integer, KeyPair> keyPairMap = new HashMap<Integer, KeyPair>();
 	
 	
-	public static KeyPair generateKeyPair() {
+	public static KeyPair generateKeyPair() throws NoSuchAlgorithmException {
 		return generateKeyPair(1024);
 	}
 	
-	public static void generateKeyPairMap(int mapSize) {
+	public static void generateKeyPairMap(int mapSize) throws NoSuchAlgorithmException {
 		for(int i=0; i<mapSize; i++) {
 			keyPairMap.put(i, generateKeyPair());
 		}
@@ -71,21 +71,16 @@ public class RSAUtils {
 		return keyPairMap.get(mapKey);
 	}
 	
-	public static KeyPair generateKeyPair(int keySize) {
-
-		try {
-			KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
-			keyPairGenerator.initialize(keySize);
+	public static KeyPair generateKeyPair(int keySize) throws NoSuchAlgorithmException {
+		KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
+		keyPairGenerator.initialize(keySize);
 				
-			keyPair = keyPairGenerator.generateKeyPair();
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-		}
+		keyPair = keyPairGenerator.generateKeyPair();
 		
 		return keyPair;
 	}
 	
-	public static KeyPair getKeyPair() {
+	public static KeyPair getKeyPair() throws NoSuchAlgorithmException {
 		if(keyPair == null) {
 			generateKeyPair();
 		}
@@ -101,25 +96,11 @@ public class RSAUtils {
 	 */
 	public static String encrypt(String text, PublicKey publicKey) throws Exception {
 		byte[] bytes = text.getBytes();
-		String encryptedText = null;
-		try {
-			Cipher cipher = Cipher.getInstance(RSA);
-			cipher.init(Cipher.ENCRYPT_MODE, publicKey);
+
+		Cipher cipher = Cipher.getInstance(RSA);
+		cipher.init(Cipher.ENCRYPT_MODE, publicKey);
 			
-			encryptedText = new String(Base64.encodeBase64(cipher.doFinal(bytes)));
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-		} catch (NoSuchPaddingException e) {
-			e.printStackTrace();
-		} catch (InvalidKeyException e) {
-			e.printStackTrace();
-		} catch (IllegalBlockSizeException e) {
-			e.printStackTrace();
-		} catch (BadPaddingException e) {
-			e.printStackTrace();
-		}
-		
-		return encryptedText;
+		return new String(Base64.encodeBase64(cipher.doFinal(bytes)));
 	}
 	
 	/**
@@ -154,19 +135,11 @@ public class RSAUtils {
 	 * RSA 공개키로부터 RSAPublicKeySpec 객체를 생성함
 	 * @param publicKey 공개키
 	 * @return RSAPublicKeySpec
+	 * @throws NoSuchAlgorithmException 
+	 * @throws InvalidKeySpecException 
 	 */
-	public static RSAPublicKeySpec getRSAPublicKeySpec(PublicKey publicKey) {
-		
-		RSAPublicKeySpec spec = null;
-		try {
-			spec = KeyFactory.getInstance("RSA").getKeySpec(publicKey, RSAPublicKeySpec.class);
-		} catch (InvalidKeySpecException e) {
-			e.printStackTrace();
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-		}
-		
-		return spec;
+	public static RSAPublicKeySpec getRSAPublicKeySpec(PublicKey publicKey) throws InvalidKeySpecException, NoSuchAlgorithmException {
+		return KeyFactory.getInstance("RSA").getKeySpec(publicKey, RSAPublicKeySpec.class);
 	}
 	
 	/**
@@ -188,27 +161,27 @@ public class RSAUtils {
 		return spec;
 	}
 	
-	public static PublicKey getPublicKey() {
+	public static PublicKey getPublicKey() throws NoSuchAlgorithmException {
 		return getKeyPair().getPublic();
 	}
 	
-	public static PrivateKey getPrivateKey() {
+	public static PrivateKey getPrivateKey() throws NoSuchAlgorithmException {
 		return getKeyPair().getPrivate();
 	}
 	
-	public static String getPublicKeyModuleString(PublicKey publicKey) {
+	public static String getPublicKeyModuleString(PublicKey publicKey) throws InvalidKeySpecException, NoSuchAlgorithmException {
 		return getPublicKeyModuleString(publicKey, 16);
 	}
 	
-	public static String getPublicKeyModuleString(PublicKey publicKey, int radix) {
+	public static String getPublicKeyModuleString(PublicKey publicKey, int radix) throws InvalidKeySpecException, NoSuchAlgorithmException {
 		return getRSAPublicKeySpec(publicKey).getModulus().toString(radix);
 	}
 	
-	public static String getPublicKeyExponentString(PublicKey publicKey, int radix) {
+	public static String getPublicKeyExponentString(PublicKey publicKey, int radix) throws InvalidKeySpecException, NoSuchAlgorithmException {
 		return getRSAPublicKeySpec(publicKey).getPublicExponent().toString(radix);
 	}
 	
-	public static String getPublicKeyExponentString(PublicKey publicKey) {
+	public static String getPublicKeyExponentString(PublicKey publicKey) throws InvalidKeySpecException, NoSuchAlgorithmException {
 		return getPublicKeyExponentString(publicKey, 16);
 	}
 	
@@ -228,11 +201,11 @@ public class RSAUtils {
 		return getPrivateKeyExponentString(privateKey, 16);
 	}
 	
-	public static byte[] getPublicKeyBase64() {
+	public static byte[] getPublicKeyBase64() throws NoSuchAlgorithmException {
 		return Base64.encodeBase64( getKeyPair().getPublic().getEncoded() );
 	}
 	
-	public static byte[] getPrivateKeyBase64() {
+	public static byte[] getPrivateKeyBase64() throws NoSuchAlgorithmException {
 		return Base64.encodeBase64( getKeyPair().getPrivate().getEncoded() );
 	}
 	

@@ -25,27 +25,18 @@ public class StringOutputStream extends OutputStream {
 		super.flush();
 	}
 
-	public void write(byte[] b) {
-		String str = null;
-		try {
-			str = new String(b, StandardGlobal.ENCODING);
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
-		this.buffer.append(str);
+	@Override
+	public void write(byte[] b) throws UnsupportedEncodingException, IOException {
+		this.buffer.append(new String(b, StandardGlobal.ENCODING));
 	}
 	
-	public void write(byte[] b, int off, int len) {
-		String str = null;
-		try {
-			str = new String(b, off, len, StandardGlobal.ENCODING);
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
-		this.buffer.append(str);
+	@Override
+	public void write(byte[] b, int off, int len) throws UnsupportedEncodingException, IOException {
+		this.buffer.append(new String(b, off, len, StandardGlobal.ENCODING));
 	}
 
-	public void write(int b) {
+	@Override
+	public void write(int b) throws IOException {
 		String str = Integer.toString(b);
 		this.buffer.append(str);
 	}

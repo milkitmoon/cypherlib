@@ -63,7 +63,7 @@ public class SecurityUtilTest {
 	
 	
 	@Test
-	public void 암호화_테스트2() {
+	public void 암호화_테스트2() throws Exception {
 		String securityKey = "MILKSECURETESTKEY";
 		
 		String plainText = "ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEF";

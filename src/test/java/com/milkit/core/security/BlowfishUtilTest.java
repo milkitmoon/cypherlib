@@ -10,7 +10,7 @@ public class BlowfishUtilTest {
 	
 
 	@Test
-	public void 암호화_테스트() {
+	public void 암호화_테스트() throws Exception {
 		String plainText = "ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEF";
 		System.out.println("Plain Text = " + plainText);
 		String encryptText = BlowfishUtil.encrypt("1234", plainText);
@@ -23,7 +23,7 @@ public class BlowfishUtilTest {
 	
 	
 	@Test
-	public void 암호화_테스트2() {
+	public void 암호화_테스트2() throws Exception {
 		String securityKey = "asdqwezxc";
 		
 		String plainText = "ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEF";

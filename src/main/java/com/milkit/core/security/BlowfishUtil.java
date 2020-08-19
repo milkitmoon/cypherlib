@@ -13,17 +13,14 @@ public class BlowfishUtil {
 	 * Blowfish 암호화
 	 * @param str
 	 * @return
+	 * @throws Exception 
 	 */
-	public static String encrypt(String securityKey, String str) {
+	public static String encrypt(String securityKey, String str) throws Exception {
 		CryptoSunJCE crypt = CryptoSunJCE.getInstance();
 		crypt.setKeyEncode(securityKey.getBytes());
 		String result = null;
-		try {
-			result = crypt.encode(str);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return result;
+
+		return crypt.encode(str);
 	}
 
 	/**
@@ -31,18 +28,12 @@ public class BlowfishUtil {
 	 * Blowfish 복호화
 	 * @param str
 	 * @return
+	 * @throws Exception 
 	 */
-	public static String decrypt(String securityKey, String str) {
-		String result = null;
-		try {
-			CryptoSunJCE crypt = CryptoSunJCE.getInstance();
-			crypt.setKeyEncode(securityKey.getBytes());
-			result = crypt.decode(str);
-		} catch (java.lang.IllegalArgumentException e) {
-			result = str;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return result;
+	public static String decrypt(String securityKey, String str) throws Exception {
+		CryptoSunJCE crypt = CryptoSunJCE.getInstance();
+		crypt.setKeyEncode(securityKey.getBytes());
+		
+		return crypt.decode(str);
 	}
 }

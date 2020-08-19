@@ -5,8 +5,7 @@ import com.milkit.core.security.method.SecretMethod;
 
 
 public class SecurityUtil {
-	
-	
+
 	public static String encrypt(String algname, String securityKey, String painStr) throws Exception {
 		return encrypt(algname, securityKey, null, painStr, true);
 	}
@@ -16,9 +15,16 @@ public class SecurityUtil {
 	}
 	
 	public static String encrypt(String algname, String securityKey, String securityKeyIV, String painStr, boolean enabeBase64) throws Exception {
+		if(algname == null || algname.equals("")) {
+			throw new IllegalArgumentException("algorithm 값이 존재하지 않습니다.");
+		}
 		
-		if(algname == null || securityKey == null || painStr == null) {
-			return null;
+		if(securityKey == null || securityKey.equals("")) {
+			throw new IllegalArgumentException("암호화 키값이 존재하지 않습니다.");
+		}
+		
+		if(painStr == null || painStr.equals("")) {
+			throw new IllegalArgumentException("암호화할 대상값이 존재하지 않습니다.");
 		}
 		
 		SecretMethod secretMethod = MethodFactory.getSecretMethod(algname, enabeBase64);
@@ -41,8 +47,16 @@ public class SecurityUtil {
 	}
 
 	public static String decrypt(String algname, String securityKey, String securityKeyIV, String encStr, boolean enabeBase64) throws Exception {
-		if(algname == null || securityKey == null || encStr == null) {
-			return null;
+		if(algname == null || algname.equals("")) {
+			throw new IllegalArgumentException("algorithm 값이 존재하지 않습니다.");
+		}
+		
+		if(securityKey == null || securityKey.equals("")) {
+			throw new IllegalArgumentException("복호화 키값이 존재하지 않습니다.");
+		}
+		
+		if(encStr == null || encStr.equals("")) {
+			throw new IllegalArgumentException("복호화할 대상값이 존재하지 않습니다.");
 		}
 		
 		SecretMethod secretMethod = MethodFactory.getSecretMethod(algname, enabeBase64);
