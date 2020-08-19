@@ -25,7 +25,7 @@
 > 암호화 AOP 순서 1 
 
 - 암호화 대상 Class 의 Field에 암호화 관련 설정
-<img src="https://user-images.githubusercontent.com/61044774/90595757-866bc380-e228-11ea-8f17-42437086ad1b.jpg" width="120%"></img>
+<img src="https://user-images.githubusercontent.com/61044774/90595757-866bc380-e228-11ea-8f17-42437086ad1b.jpg" width="140%"></img>
 * 암호화 및 Hash 처리가 필요한 필드에 **@Encrypt, @Hash** 등과 같은 Annotation을 선언한다.
 * @Encrypt : 암호화 처리 Annotation
   * algorithm : AES128, Blowfish 등 대칭키 알고리즘을 지정할 수 있다.
@@ -37,7 +37,7 @@
 > 암호화 AOP 순서 2
 
 - 암호화를 수행할 Class 의 Method에 암호화 관련 설정
-<img src="https://user-images.githubusercontent.com/61044774/90596109-35a89a80-e229-11ea-9fd3-ea1a0388c1e5.jpg" width="130%"></img>
+<img src="https://user-images.githubusercontent.com/61044774/90596109-35a89a80-e229-11ea-9fd3-ea1a0388c1e5.jpg" width="150%"></img>
 * 암호화를 수행하고자 하는 Class내 Method 구간에서 @DoEncryption Annotation을 선언한다.
 </br>이때 해당 Method의 인자의 Object의(예제에서는 CreditCard) Field 가 암호화 처리 Annotation이 지정되어 있을때 
    해당 필드를 암/복화를 수행한다.
