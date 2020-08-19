@@ -46,7 +46,7 @@
   </properties>
 
 
-	<repositories>
+  <repositories>
 
 		<!-- For testing against latest Spring snapshots -->
 		<repository>
