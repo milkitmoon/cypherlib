@@ -22,7 +22,7 @@
 
 # 4. 사용예제
 
-> 암호화 AOP 순서 1 
+> 암호화 AOP 적용순서 1 
 
 - 암호화 대상 Class 의 Field에 암호화 관련 설정
 <img src="https://user-images.githubusercontent.com/61044774/90595757-866bc380-e228-11ea-8f17-42437086ad1b.jpg" width="140%"></img>
@@ -34,26 +34,27 @@
 * @Hash : 해싱처리 Annotation
   * algorithm : sha, md5 등과 같은 해시 알고리즘을 지정할 수 있다.
 
-> 암호화 AOP 순서 2
+> 암호화 AOP 적용순서 2
 
 - 암호화를 수행할 Class 의 Method에 암호화 관련 설정
 <img src="https://user-images.githubusercontent.com/61044774/90596109-35a89a80-e229-11ea-9fd3-ea1a0388c1e5.jpg" width="150%"></img>
 * 암호화를 수행하고자 하는 Class내 Method 구간에서 @DoEncryption Annotation을 선언한다.
 </br>이때 해당 Method의 인자의 Object의(예제에서는 CreditCard) Field 가 암호화 처리 Annotation이 지정되어 있을때 
    해당 필드를 암/복화를 수행한다.
-* **@DoEncryption** : 암호화 처리 AOP 수행 식별자 (3가지 모드의 암호화 처리를 지원한다.)
+* **@DoEncryption** : 암호화 처리 AOP 수행 식별자 (3가지 **type**의 암호화 처리를 지원한다.)
   * encrypt : 해당 필드를 암호화만 수행한다. Return 되는 값은 복호화 되지 않는다. (default 가 encrypt 모드이다.)
   * decrypt : 해당 필드의 복호화만 수행한다. 인자값은 암호화 시키지 않고 다만 Return 되는 값만 복호화 시킨다.
   * both : 해당 필드의 암/복호화를 모두 수행한다.
-* 앞에 AOP순서 1에서 @Hash Annotation일 경우 encrypt/decrypt 모드와 상관없이 무조건 Hashing 처리한다.
+* 앞에 암호화 AOP 적용순서 1에서 @Hash Annotation일 경우 encrypt/decrypt 모드와 상관없이 무조건 Hashing 처리한다.
 
  
 # 5. 암호화 시험결과
 
 > 성능시험결과
 
-- DB에 등록되는 정보를 암호화 및 비암호화로 분류하여 성능을 시험하였다.
+- DB에 등록되는 정보를 암호화 AOP 적용 및 미적용으로 분류하여 성능을 시험하였다.
 - 100개의 클라이언트에서 10000번의 루프를 돌며 실행한 결과를 추출하였다. (JMeter 사용)
 - 암호화 알고리즘은 blowfish 를 사용하였다. (대칭형 가변키길이 암호화 방식)
+- 설계한 시험환경에서는 암호화 AOP 적용에 대한 성능 저하가 미미한 것으로 보인다.
  
 <img src="https://user-images.githubusercontent.com/61044774/90596676-6c32e500-e22a-11ea-8924-5fa62715ba80.jpg" width="110%"></img> 
