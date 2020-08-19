@@ -127,30 +127,6 @@ public class SecretMethodTest {
 	}
 	
 	
-	@Test
-	public void RSA테스트() throws Exception {
-		String algname = RSASecretMethod.RSAOAEP;
-		String keyData = "1234567890123456";
-		String painStr = "9f86d081884c7d65";
-		Object salt = null;
-		
-		logger.debug("plain str:"+painStr);
-		logger.debug("keyData:"+keyData);
-		
-		SecretMethod secretMethod = MethodFactory.getSecretMethod(algname);
-		secretMethod.setKey(keyData.getBytes());
-//		secretMethod.setIv(keyData.getBytes());
-		byte[] encBytes = secretMethod.encrypt(painStr.getBytes());
-		
-		logger.debug("enc str:"+new String(encBytes));
-		
-		byte[] decBytes = secretMethod.decrypt(encBytes);
-		
-		String decString = new String(decBytes);
-		logger.debug("dec str:"+decString);
-		
-		assertTrue(painStr.equals(decString));
-	}
 
 	
 }

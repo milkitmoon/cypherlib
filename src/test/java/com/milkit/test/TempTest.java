@@ -10,18 +10,6 @@ public class TempTest {
 
 	
 	@Test
-	public void 그냥() {
-		Object i = new Object();
-		Object t = new Object();
-		System.out.println("hashCode : " + i.hashCode());
-		System.out.println("hashCode : " + t.hashCode());
-		String s = i.toString();
-		String k = t.toString();
-		System.out.println("s : " + s);
-		System.out.println("k : " + k);
-	}
-	
-	@Test
 	public void 전화번호_테스트() {
 //		String phoneNumber = "01086626053";
 		String phoneNumber = "025166776";
