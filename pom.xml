@@ -8,10 +8,6 @@
   <name>cypherlib</name>
   <url>http://maven.apache.org</url>
   
-  
-  <!-- 주의!! 배포시에는 packaging type을 jar로 수정하여 빌드하여 배포(하위 프로젝트 마찬가지임), 기본 개발 시에는 pom type  -->
-
-<!---->
   <packaging>jar</packaging>
 	
 <!--
@@ -38,25 +34,14 @@
 	  <commons.lang.version>2.5</commons.lang.version>
 	  <servlet-api-version>2.5</servlet-api-version>
 
-<!-- --> 
 	  <spring.version>3.2.4.RELEASE</spring.version>
-
-<!--
- 	  <spring.version>4.0.3.RELEASE</spring.version>
- -->
- 
       <spring-modules-version>0.8</spring-modules-version>
       <spring-modules-jakarta-commons-version>0.8</spring-modules-jakarta-commons-version>
       <junit.version>4.8.1</junit.version>
       <log4j.version>1.2.16</log4j.version>
       
       <json.version>1.9.12</json.version>
- 	
-<!-- 
-      <slf.version>1.5.11</slf.version>
- -->       
- 	<slf.version>1.7.7</slf.version>
- 
+ 	  <slf.version>1.7.7</slf.version>
       <maven.version>2.0.4</maven.version>
   </properties>
 
@@ -117,70 +102,35 @@
       <scope>test</scope>
     </dependency>
 
-    <!--  
-	<dependency>
-		<groupId>org.opensaml</groupId>
-		<artifactId>opensaml</artifactId>
-		<version>2.2.3</version>
-	</dependency>
-    -->
-     
-    <!--  
-        Core utilities used by other modules.  
-        Define this if you use Spring Utility APIs (org.springframework.core.*/org.springframework.util.*)  
-    -->
     <dependency>  
       <groupId>org.springframework</groupId>  
       <artifactId>spring-core</artifactId>  
       <version>${spring.version}</version>  
     </dependency>
       
-     
-    <!--  
-        Expression Language (depends on spring-core)  
-        Define this if you use Spring Expression APIs (org.springframework.expression.*)  
-    -->
     <dependency>  
       <groupId>org.springframework</groupId>  
       <artifactId>spring-expression</artifactId>  
       <version>${spring.version}</version>  
     </dependency>  
      
-    <!--  
-        Bean Factory and JavaBeans utilities (depends on spring-core)  
-        Define this if you use Spring Bean APIs (org.springframework.beans.*)  
-    -->
     <dependency>  
       <groupId>org.springframework</groupId>  
       <artifactId>spring-beans</artifactId>  
       <version>${spring.version}</version>  
     </dependency>  
      
-    <!--  
-        Aspect Oriented Programming (AOP) Framework (depends on spring-core, spring-beans)  
-        Define this if you use Spring AOP APIs (org.springframework.aop.*)  
-    -->
     <dependency>  
       <groupId>org.springframework</groupId>  
       <artifactId>spring-aop</artifactId>  
       <version>${spring.version}</version>  
     </dependency>  
      
-     
-    <!--  
-        Application Context (depends on spring-core, spring-expression, spring-aop, spring-beans)  
-        This is the central artifact for Spring's Dependency Injection Container and is generally always defined  
-    -->
     <dependency>  
       <groupId>org.springframework</groupId>  
       <artifactId>spring-context</artifactId> 
       <version>${spring.version}</version>  
     </dependency>  
-     
-    <!--  
-        Various Application Context utilities, including EhCache, JavaMail, Quartz, and Freemarker integration  
-        Define this if you need any of these integrations  
-    -->
      
     <dependency>  
       <groupId>org.springframework</groupId>  
@@ -188,11 +138,6 @@
       <version>${spring.version}</version>  
     </dependency>  
 
-    <!--  
-        Support for testing Spring applications with tools such as JUnit and TestNG  
-        This artifact is generally always defined with a 'test' scope for the integration testing framework and unit testing stubs  
-    -->
-     
     <dependency>  
       <groupId>org.springframework</groupId>  
       <artifactId>spring-test</artifactId>  
@@ -268,17 +213,6 @@
     </resources>
     
     <plugins>
-
-<!-- 
-       <plugin>
-         <groupId>org.eclipse.m2e</groupId>
-         <artifactId>m2e-config</artifactId>
-         <version>1.0.0</version>
-         <configuration>
-           <settings>${basedir}/settings.xml</settings>
-         </configuration>
-       </plugin>
- -->
   
       <plugin>
         <artifactId>maven-source-plugin</artifactId>
