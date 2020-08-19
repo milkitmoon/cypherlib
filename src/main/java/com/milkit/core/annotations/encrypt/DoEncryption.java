@@ -7,7 +7,6 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.ElementType;
 
 import com.milkit.core.enumeration.ObjValueEnum;
-import com.milkit.core.security.SecurityGlobal;
 
 /**
 * <pre>
@@ -22,7 +21,7 @@ import com.milkit.core.security.SecurityGlobal;
 @Target(ElementType.METHOD)
 public @interface DoEncryption {
 	
-	String securityKey() default SecurityGlobal.SecurityKey;	//기본 암호키 미지정 시 기본상수 값 설정
+	String securityKey() default "";	//기본 암호키 미지정 시 기본상수 값 설정
 	
 	EncryptType type() default EncryptType.Encrypt;		//기본모드 : 암호화
 	

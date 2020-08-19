@@ -1,5 +1,7 @@
 package com.milkit.core.security;
 
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Test;
 
 import com.milkit.core.security.BlowfishUtil;
@@ -11,10 +13,12 @@ public class BlowfishUtilTest {
 	public void 암호화_테스트() {
 		String plainText = "ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEF";
 		System.out.println("Plain Text = " + plainText);
-		String encryptText = BlowfishUtil.encrypt(plainText);
+		String encryptText = BlowfishUtil.encrypt("1234", plainText);
 		System.out.println("Ecrypt Text = " + encryptText + " : " + encryptText.length());
-		String decryptText = BlowfishUtil.decrypt(encryptText);
+		String decryptText = BlowfishUtil.decrypt("1234", encryptText);
 		System.out.println("Decrypt Text = " + decryptText );
+		
+		assertTrue(plainText.equals(decryptText));
 	}
 	
 	
@@ -28,6 +32,8 @@ public class BlowfishUtilTest {
 		System.out.println("Ecrypt Text = " + encryptText + ":" + encryptText.length());
 		String decryptText = BlowfishUtil.decrypt(securityKey, encryptText);
 		System.out.println("Decrypt Text = " + decryptText );
+		
+		assertTrue(plainText.equals(decryptText));
 	}
 
 }

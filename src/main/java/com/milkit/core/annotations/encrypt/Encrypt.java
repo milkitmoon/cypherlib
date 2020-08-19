@@ -7,7 +7,6 @@ import java.lang.annotation.Target;
 
 import com.milkit.core.enumeration.IntValueEnum;
 import com.milkit.core.enumeration.ObjValueEnum;
-import com.milkit.core.security.SecurityGlobal;
 import com.milkit.core.security.method.AESSecretMethod;
 import com.milkit.core.security.method.BlowfishSecretMethod;
 
@@ -24,13 +23,12 @@ import com.milkit.core.security.method.BlowfishSecretMethod;
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.FIELD, ElementType.PARAMETER})
 public @interface Encrypt {
-//	public static String Blowfish = "Blowfish";
 	
 	Algorithm algorithm() default Algorithm.BlowfishECB;
 	EncryptType type() default EncryptType.Symmetric;
 	
-	String secureKey() default SecurityGlobal.SecurityKey;
-	String secureIV() default SecurityGlobal.SecurityKeyIV;
+	String secureKey() default "";
+	String secureIV() default "";
 	
 	
 	/**

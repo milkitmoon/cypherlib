@@ -1,7 +1,6 @@
 package com.milkit.core.security.factory;
 
 import com.milkit.core.annotations.encrypt.Encrypt.Algorithm;
-import com.milkit.core.security.SecurityGlobal;
 import com.milkit.core.security.SecurityUtil;
 import com.milkit.core.security.method.BlowfishSecretMethod;
 import com.milkit.core.security.method.SecretMethod;
@@ -20,11 +19,11 @@ public class SecurityMethodAgent {
 		}
 		
 		if(securityKey == null || securityKey.equals("")) {
-			securityKey = SecurityGlobal.SecurityKey;
+			throw new IllegalArgumentException("암호화 키값이 존재하지 않습니다.");
 		}
 		
-		if(securityKeyIV == null || securityKeyIV.equals("")) {
-			securityKeyIV = SecurityGlobal.SecurityKeyIV;
+		if(algorithm != Algorithm.BlowfishECB && (securityKeyIV == null || securityKeyIV.equals(""))) {
+			throw new IllegalArgumentException("암호화 IV값이 존재하지 않습니다.");
 		}
 		
 		if(algorithm == Algorithm.BlowfishECB) {
@@ -60,21 +59,17 @@ public class SecurityMethodAgent {
 		}
 		
 		if(securityKey == null || securityKey.equals("")) {
-			securityKey = SecurityGlobal.SecurityKey;
+			throw new IllegalArgumentException("암호화 키값이 존재하지 않습니다.");
 		}
 		
-		if(securityKeyIV == null || securityKeyIV.equals("")) {
-			securityKeyIV = SecurityGlobal.SecurityKeyIV;
+		if(algorithm != Algorithm.BlowfishECB && (securityKeyIV == null || securityKeyIV.equals(""))) {
+			throw new IllegalArgumentException("암호화 IV값이 존재하지 않습니다.");
 		}
 		
-		try {
-			if(algorithm == Algorithm.BlowfishECB) {
-				clearText = SecurityUtil.decrypt(algorithm.getValue(), securityKey, null, cipherText, encodeHashAsBase64);
-			} else {
-				clearText = SecurityUtil.decrypt(algorithm.getValue(), securityKey, securityKeyIV, cipherText, encodeHashAsBase64);
-			}
-		} catch(Exception ex) {
-			logger.error("복호화오류", ex);
+		if(algorithm == Algorithm.BlowfishECB) {
+			clearText = SecurityUtil.decrypt(algorithm.getValue(), securityKey, null, cipherText, encodeHashAsBase64);
+		} else {
+			clearText = SecurityUtil.decrypt(algorithm.getValue(), securityKey, securityKeyIV, cipherText, encodeHashAsBase64);
 		}
 		
 		return clearText;
