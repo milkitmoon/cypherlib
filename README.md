@@ -15,8 +15,9 @@
 
 # 3. 업무흐름도
 
-> Database 암호화 기능 
-<img src="https://user-images.githubusercontent.com/61044774/90595431-d6965600-e227-11ea-968c-eec8a0c45a9b.jpg" width="90%"></img>
+> AOP 암호화 기능 
+
+<img src="https://user-images.githubusercontent.com/61044774/90595431-d6965600-e227-11ea-968c-eec8a0c45a9b.jpg" width="100%"></img>
 
 
 # 4. 사용예제
@@ -24,7 +25,7 @@
 > 암호화 AOP 순서 1 
 
 - 암호화 대상 Class 의 Field에 암호화 관련 설정
-<img src="https://user-images.githubusercontent.com/61044774/90595757-866bc380-e228-11ea-8f17-42437086ad1b.jpg" width="90%"></img>
+<img src="https://user-images.githubusercontent.com/61044774/90595757-866bc380-e228-11ea-8f17-42437086ad1b.jpg" width="120%"></img>
 * 암호화 및 Hash 처리가 필요한 필드에 **@Encrypt, @Hash** 등과 같은 Annotation을 선언한다.
 * @Encrypt : 암호화 처리 Annotation
   * algorithm : AES128, Blowfish 등 대칭키 알고리즘을 지정할 수 있다.
@@ -36,9 +37,9 @@
 > 암호화 AOP 순서 2
 
 - 암호화를 수행할 Class 의 Method에 암호화 관련 설정
-<img src="https://user-images.githubusercontent.com/61044774/90596109-35a89a80-e229-11ea-9fd3-ea1a0388c1e5.jpg" width="90%"></img>
-* 암호화를 수행하고자 하는 Class내 Method 구간에서 @DoEncryption Annotation을 선언한다
-이때 해당 Method의 인자의 Object의(예제에서는 CreditCard) Field 가 암호화 처리 Annotation이 지정되어 있을때 
+<img src="https://user-images.githubusercontent.com/61044774/90596109-35a89a80-e229-11ea-9fd3-ea1a0388c1e5.jpg" width="130%"></img>
+* 암호화를 수행하고자 하는 Class내 Method 구간에서 @DoEncryption Annotation을 선언한다.
+</br>이때 해당 Method의 인자의 Object의(예제에서는 CreditCard) Field 가 암호화 처리 Annotation이 지정되어 있을때 
    해당 필드를 암/복화를 수행한다.
 * **@DoEncryption** : 암호화 처리 AOP 수행 식별자 (3가지 모드의 암호화 처리를 지원한다.)
   * encrypt : 해당 필드를 암호화만 수행한다. Return 되는 값은 복호화 되지 않는다. (default 가 encrypt 모드이다.)
@@ -55,4 +56,4 @@
 - 100개의 클라이언트에서 10000번의 루프를 돌며 실행한 결과를 추출하였다. (JMeter 사용)
 - 암호화 알고리즘은 blowfish 를 사용하였다. (대칭형 가변키길이 암호화 방식)
  
-<img src="https://user-images.githubusercontent.com/61044774/90596676-6c32e500-e22a-11ea-8924-5fa62715ba80.jpg" width="90%"></img> 
+<img src="https://user-images.githubusercontent.com/61044774/90596676-6c32e500-e22a-11ea-8924-5fa62715ba80.jpg" width="110%"></img> 
