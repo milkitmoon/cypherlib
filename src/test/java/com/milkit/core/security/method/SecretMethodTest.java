@@ -126,7 +126,4 @@ public class SecretMethodTest {
 		assertTrue(painStr.equals(decString));
 	}
 	
-	
-
-	
 }
