@@ -81,14 +81,14 @@ public class CreditCardEncryptDummyImpl implements CreditCardEncryptDummy {
 	
 
 ```
-* 암호화를 수행하고자 하는 Class내 Method 구간에서 @DoEncryption Annotation을 선언한다.
+* 암호화를 수행하고자 하는 Class내 Method 구간에서 **@DoEncryption** Annotation을 선언한다.
 </br>이때 해당 Method의 인자의 Object의(예제에서는 CreditCard) Field 가 암호화 처리 Annotation이 지정되어 있을때 
    해당 필드를 암/복화를 수행한다.
 * **@DoEncryption** : 암호화 처리 AOP 수행 식별자 (3가지 **type**의 암호화 처리를 지원한다.)
   * encrypt : 해당 필드를 암호화만 수행한다. Return 되는 값은 복호화 되지 않는다. (default 가 encrypt 모드이다.)
   * decrypt : 해당 필드의 복호화만 수행한다. 인자값은 암호화 시키지 않고 다만 Return 되는 값만 복호화 시킨다.
   * both : 해당 필드의 암/복호화를 모두 수행한다.
-* 앞에 암호화 AOP 적용순서 1에서 @Hash Annotation일 경우 encrypt/decrypt 모드와 상관없이 무조건 Hashing 처리한다.
+* 앞에 암호화 AOP 적용순서 1에서 **@Hash** Annotation일 경우 encrypt/decrypt 모드와 상관없이 무조건 Hashing 처리한다.
 
  
 # 5. 암호화 시험결과
