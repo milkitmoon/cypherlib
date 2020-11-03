@@ -24,7 +24,7 @@
 
 ## 암호화 AOP 적용순서 1 
 
-- 암호화 대상 Class 의 Field에 암호화 관련 설정
+- 암호화 대상 Class Object의 Field에 암호화 관련 설정
 ```java
 
 public class CreditCard extends AbstractBean implements Serializable {
@@ -84,6 +84,7 @@ public class CreditCardEncryptDummyImpl implements CreditCardEncryptDummy {
 * 암호화를 수행하고자 하는 Class내 Method 구간에서 **@DoEncryption** Annotation을 선언한다.
 </br>이때 해당 Method의 인자의 Object의(예제에서는 CreditCard) Field 가 암호화 처리 Annotation이 지정되어 있을때 
    해당 필드를 암/복화를 수행한다.
+<span style="color:blue">**@DoEncryption** Annotation을 선언되어 있지 않은 메소드에서는 1의 암호화대상 Class일 지라도 암복호화가 수행되지 않는다.</span>
 * **@DoEncryption** : 암호화 처리 AOP 수행 식별자 (3가지 **type**의 암호화 처리를 지원한다.)
   * encrypt : 해당 필드를 암호화만 수행한다. Return 되는 값은 복호화 되지 않는다. (default 가 encrypt 모드이다.)
   * decrypt : 해당 필드의 복호화만 수행한다. 인자값은 암호화 시키지 않고 다만 Return 되는 값만 복호화 시킨다.
