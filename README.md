@@ -45,11 +45,11 @@ public class CreditCard extends AbstractBean implements Serializable {
 
 ```
 * 암호화 및 Hash 처리가 필요한 필드에 **@Encrypt, @Hash** 등과 같은 Annotation을 선언한다.
-* @Encrypt : 암호화 처리 Annotation
+* **@Encrypt** : 암호화 처리 Annotation
   * algorithm : AES128, Blowfish 등 대칭키 알고리즘을 지정할 수 있다.
   * secureKey : 암호화 키값을 지정할 수 있다.
   * secureIV : 암호화 IV값을 지정할 수 있다.
-* @Hash : 해싱처리 Annotation
+* **@Hash** : 해싱처리 Annotation
   * algorithm : sha, md5 등과 같은 해시 알고리즘을 지정할 수 있다.
 
 > 암호화 AOP 적용순서 2
