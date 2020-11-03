@@ -24,7 +24,7 @@ import com.milkit.core.security.method.BlowfishSecretMethod;
 @Target({ElementType.FIELD, ElementType.PARAMETER})
 public @interface Encrypt {
 	
-	Algorithm algorithm() default Algorithm.BlowfishECB;
+	EncryptAlgorithm algorithm() default EncryptAlgorithm.BlowfishECB;
 	EncryptType type() default EncryptType.Symmetric;
 	
 	String secureKey() default "";
@@ -40,7 +40,7 @@ public @interface Encrypt {
 	* 5. 설명    : 암호화 알고리즘(Blowfish)
 	* </pre>
 	*/
-	public static enum Algorithm implements ObjValueEnum {
+	public static enum EncryptAlgorithm implements ObjValueEnum {
 		BlowfishCBC(BlowfishSecretMethod.BLOWFISHCBC),
 		BlowfishECB(BlowfishSecretMethod.BLOWFISHECB),
 		AES128CBC(AESSecretMethod.AESCBC),
@@ -48,7 +48,7 @@ public @interface Encrypt {
 
 		private final String value;
 		
-		Algorithm(String value) {
+		EncryptAlgorithm(String value) {
 			this.value = value;
 		}
 

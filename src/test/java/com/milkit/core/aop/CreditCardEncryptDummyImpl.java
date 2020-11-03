@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.milkit.core.annotations.encrypt.DoEncryption;
 import com.milkit.core.annotations.encrypt.Encrypt;
 import com.milkit.core.annotations.encrypt.DoEncryption.EncryptType;
-import com.milkit.core.annotations.encrypt.Encrypt.Algorithm;
+import com.milkit.core.annotations.encrypt.Encrypt.EncryptAlgorithm;
 import com.milkit.core.common.AbstractBean;
 
 

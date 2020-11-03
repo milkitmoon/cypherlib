@@ -20,7 +20,7 @@ import com.milkit.core.annotations.encrypt.DoEncryption;
 import com.milkit.core.annotations.encrypt.Encrypt;
 import com.milkit.core.annotations.encrypt.Hash;
 import com.milkit.core.annotations.encrypt.DoEncryption.EncryptType;
-import com.milkit.core.annotations.encrypt.Encrypt.Algorithm;
+import com.milkit.core.annotations.encrypt.Encrypt.EncryptAlgorithm;
 import com.milkit.core.reflect.ReflectUtil;
 import com.milkit.core.security.BlowfishUtil;
 import com.milkit.core.security.SecurityUtil;
@@ -193,7 +193,7 @@ public class EncryptionAspect {
 	}
 
 	
-	private String encryptValue(Algorithm algorithm, String secureKey, String secureIV, String clearText) throws Exception {
+	private String encryptValue(EncryptAlgorithm algorithm, String secureKey, String secureIV, String clearText) throws Exception {
 		String cipherText = null;
 		if(algorithm == null || algorithm.equals("")) {
 			throw new IllegalArgumentException("algorithm 값이 존재하지 않습니다.");
@@ -207,13 +207,13 @@ public class EncryptionAspect {
 			throw new IllegalArgumentException("암호화 IV값이 존재하지 않습니다.");
 		}
 		
-		if(algorithm == Algorithm.BlowfishECB) {
+		if(algorithm == EncryptAlgorithm.BlowfishECB) {
 			cipherText = SecurityUtil.encrypt(algorithm.getValue(), secureKey, null, clearText);
-		} else if(algorithm == Algorithm.BlowfishCBC) {
+		} else if(algorithm == EncryptAlgorithm.BlowfishCBC) {
 			cipherText = SecurityUtil.encrypt(algorithm.getValue(), secureKey, secureIV, clearText);
-		} else if(algorithm == Algorithm.AES128CBC) {
+		} else if(algorithm == EncryptAlgorithm.AES128CBC) {
 			cipherText = SecurityUtil.encrypt(algorithm.getValue(), secureKey, secureIV, clearText);
-		} else if(algorithm == Algorithm.AES128ECB) {
+		} else if(algorithm == EncryptAlgorithm.AES128ECB) {
 			cipherText = SecurityUtil.encrypt(algorithm.getValue(), secureKey, secureIV, clearText);
 		}
 		
@@ -221,7 +221,7 @@ public class EncryptionAspect {
 	}
 
 	
-	private String decryptValue(Algorithm algorithm, String secureKey, String secureIV, String cipherText) throws Exception {
+	private String decryptValue(EncryptAlgorithm algorithm, String secureKey, String secureIV, String cipherText) throws Exception {
 		String clearText = null;
 		if(algorithm == null || algorithm.equals("")) {
 			throw new IllegalArgumentException("algorithm 값이 존재하지 않습니다.");
@@ -235,13 +235,13 @@ public class EncryptionAspect {
 			throw new IllegalArgumentException("암호화 IV값이 존재하지 않습니다.");
 		}
 		
-		if(algorithm == Algorithm.BlowfishECB) {
+		if(algorithm == EncryptAlgorithm.BlowfishECB) {
 			clearText = SecurityUtil.decrypt(algorithm.getValue(), secureKey, null, cipherText);
-		} else if(algorithm == Algorithm.BlowfishCBC) {
+		} else if(algorithm == EncryptAlgorithm.BlowfishCBC) {
 			clearText = SecurityUtil.decrypt(algorithm.getValue(), secureKey, secureIV, cipherText);
-		} else if(algorithm == Algorithm.AES128CBC) {
+		} else if(algorithm == EncryptAlgorithm.AES128CBC) {
 			clearText = SecurityUtil.decrypt(algorithm.getValue(), secureKey, secureIV, cipherText);
-		} else if(algorithm == Algorithm.AES128ECB) {
+		} else if(algorithm == EncryptAlgorithm.AES128ECB) {
 			clearText = SecurityUtil.decrypt(algorithm.getValue(), secureKey, secureIV, cipherText);
 		}
 		

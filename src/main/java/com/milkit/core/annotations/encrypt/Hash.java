@@ -22,7 +22,7 @@ import com.milkit.core.enumeration.ObjValueEnum;
 @Target({ElementType.FIELD, ElementType.PARAMETER})
 public @interface Hash {
 	
-	Algorithm algorithm() default Algorithm.SHA256;
+	HashAlgorithm algorithm() default HashAlgorithm.SHA256;
 	
 	/**
 	* <pre>
@@ -33,12 +33,12 @@ public @interface Hash {
 	* 5. 설명    : 단방향Hash 알고리즘 (MD5, SHA1, SHA256, SHA512)
 	* </pre>
 	*/
-	public static enum Algorithm implements ObjValueEnum {
+	public static enum HashAlgorithm implements ObjValueEnum {
 		MD5("MD5"), SHA1("SHA1"), SHA256("SHA256"), SHA512("SHA512");
 
 		private final String value;
 		
-		Algorithm(String value) {
+		HashAlgorithm(String value) {
 			this.value = value;
 		}
 

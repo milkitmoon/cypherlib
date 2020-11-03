@@ -31,13 +31,13 @@ public class CreditCard extends AbstractBean implements Serializable {
 
 	private long id;
 
-	@Encrypt(algorithm=com.milkit.core.annotations.encrypt.Encrypt.Algorithm.AES128CBC, secureKey="1234567890123456", secureIV="9878543210123456")
+	@Encrypt(algorithm=EncryptAlgorithm.AES128CBC, secureKey="1234567890123456", secureIV="9878543210123456")
 	private String creditCardNumber;
 
-	@Encrypt(algorithm=com.milkit.core.annotations.encrypt.Encrypt.Algorithm.BlowfishECB, secureKey="MILKSECURETESTKEY", secureIV="MILKSECUREKEYIV12")
+	@Encrypt(algorithm=EncryptAlgorithm.BlowfishECB, secureKey="MILKSECURETESTKEY", secureIV="MILKSECUREKEYIV12")
 	private String fourDigits;
 
-	@Hash(algorithm=com.milkit.core.annotations.encrypt.Hash.Algorithm.SHA256)
+	@Hash(algorithm=HashAlgorithm.SHA256)
 	private String password;
 	
 	private String cardType;
