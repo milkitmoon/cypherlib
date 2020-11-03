@@ -22,7 +22,7 @@
 
 # 4. 사용예제
 
-> 암호화 AOP 적용순서 1 
+## 암호화 AOP 적용순서 1 
 
 - 암호화 대상 Class 의 Field에 암호화 관련 설정
 ```java
@@ -52,7 +52,7 @@ public class CreditCard extends AbstractBean implements Serializable {
 * **@Hash** : 해싱처리 Annotation
   * algorithm : sha, md5 등과 같은 해시 알고리즘을 지정할 수 있다.
 
-> 암호화 AOP 적용순서 2
+## 암호화 AOP 적용순서 2
 
 - 암호화를 수행할 Class 의 Method에 암호화 관련 설정
 ```java
