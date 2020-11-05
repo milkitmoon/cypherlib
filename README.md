@@ -57,28 +57,17 @@ public class CreditCard extends AbstractBean implements Serializable {
 - 암호화를 수행할 Class 의 Method에 암호화 관련 설정
 ```java
 
-@Repository
-public class CreditCardEncryptDummyImpl implements CreditCardEncryptDummy {
-	
-	private static final Logger logger = Logger.getLogger(CreditCardEncryptDummyImpl.class);
-	
 	@Override
 	@DoEncryption
 	public void encryptFieldCreditCard(CreditCard creditCard) throws Exception {
-		logger.debug("#########		Encrypt creditCard:"+creditCard);
+		// do something! 
 	}
 
 	@Override
 	@DoEncryption(type=EncryptType.Both)
 	public CreditCard encryptBothFieldCreditCard(CreditCard creditCard,
-			CreditCard creditCard2, PlainCard plainCard) throws Exception {
-		logger.debug("#########		Encrypt creditCard:"+creditCard);
-		logger.debug("#########		Encrypt creditCard2:"+creditCard2);
-		logger.debug("#########		Plain creditCard:"+plainCard);
-		
-		return new CreditCard(creditCard);
+		// do something!
 	}
-	
 
 ```
 * 암호화를 수행하고자 하는 Class내 Method 구간에서 **@DoEncryption** Annotation을 선언한다.
