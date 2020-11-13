@@ -215,6 +215,8 @@ public class EncryptionAspect {
 			cipherText = SecurityUtil.encrypt(algorithm.getValue(), secureKey, secureIV, clearText);
 		} else if(algorithm == EncryptAlgorithm.AES128ECB) {
 			cipherText = SecurityUtil.encrypt(algorithm.getValue(), secureKey, secureIV, clearText);
+		} else {
+			throw new IllegalArgumentException("잘못된 algorithm 값입니다.");
 		}
 		
 		return cipherText;
@@ -243,6 +245,8 @@ public class EncryptionAspect {
 			clearText = SecurityUtil.decrypt(algorithm.getValue(), secureKey, secureIV, cipherText);
 		} else if(algorithm == EncryptAlgorithm.AES128ECB) {
 			clearText = SecurityUtil.decrypt(algorithm.getValue(), secureKey, secureIV, cipherText);
+		} else {
+			throw new IllegalArgumentException("잘못된 algorithm 값입니다.");
 		}
 		
 		return clearText;
